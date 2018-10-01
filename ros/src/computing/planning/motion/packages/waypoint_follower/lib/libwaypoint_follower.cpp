@@ -131,6 +131,22 @@ geometry_msgs::Point calcRelativeCoordinate(geometry_msgs::Point point_msg, geom
   return tf_point_msg;
 }
 
+// calculation relative coordinate of pose from current_pose frame
+geometry_msgs::Pose calcRelativeCoordinate(geometry_msgs::Pose pose_msg, geometry_msgs::Pose current_pose)
+{
+  tf::Transform inverse;
+  tf::poseMsgToTF(current_pose, inverse);
+  tf::Transform transform = inverse.inverse();
+
+  tf::Transform p;
+  tf::poseMsgToTF(pose_msg, p);
+  tf::Transform tf_p = transform * p;
+  geometry_msgs::Pose tf_pose_msg;
+  tf::poseTFToMsg(tf_p, tf_pose_msg);
+
+  return tf_pose_msg;
+}
+
 // calculation absolute coordinate of point on current_pose frame
 geometry_msgs::Point calcAbsoluteCoordinate(geometry_msgs::Point point_msg, geometry_msgs::Pose current_pose)
 {
@@ -143,6 +159,20 @@ geometry_msgs::Point calcAbsoluteCoordinate(geometry_msgs::Point point_msg, geom
   geometry_msgs::Point tf_point_msg;
   pointTFToMsg(tf_p, tf_point_msg);
   return tf_point_msg;
+}
+
+// calculation absolute coordinate of point on current_pose frame
+geometry_msgs::Pose calcAbsoluteCoordinate(geometry_msgs::Pose pose_msg, geometry_msgs::Pose current_pose)
+{
+  tf::Transform inverse;
+  tf::poseMsgToTF(current_pose, inverse);
+
+  tf::Transform p;
+  tf::poseMsgToTF(pose_msg, p);
+  tf::Transform tf_p = inverse * p;
+  geometry_msgs::Pose tf_pose_msg;
+  tf::poseTFToMsg(tf_p, tf_pose_msg);
+  return tf_pose_msg;
 }
 
 // distance between target 1 and target2 in 2-D

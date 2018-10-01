@@ -91,7 +91,13 @@ double DecelerateVelocity(double distance, double prev_velocity);
 geometry_msgs::Point calcRelativeCoordinate(geometry_msgs::Point point,
                                             geometry_msgs::Pose current_pose);  // transform point into the coordinate
                                                                                 // of current_pose
+geometry_msgs::Pose calcRelativeCoordinate(geometry_msgs::Pose pose,
+                                            geometry_msgs::Pose current_pose);  // transform point into the coordinate
+                                                                                // of current_pose
 geometry_msgs::Point calcAbsoluteCoordinate(geometry_msgs::Point point,
+                                            geometry_msgs::Pose current_pose);  // transform point into the global
+                                                                                // coordinate
+geometry_msgs::Pose calcAbsoluteCoordinate(geometry_msgs::Pose pose,
                                             geometry_msgs::Pose current_pose);  // transform point into the global
                                                                                 // coordinate
 double getPlaneDistance(geometry_msgs::Point target1,
