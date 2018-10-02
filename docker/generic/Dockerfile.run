@@ -1,0 +1,3 @@
+FROM autoware/autoware:1.7.0-kinetic
+
+ENV NVIDIA_DRIVER_CAPABILITIES all

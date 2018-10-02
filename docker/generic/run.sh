@@ -27,6 +27,11 @@ nvidia-docker run \
     --volume=$XSOCK:$XSOCK:rw \
     --volume=$XAUTH:$XAUTH:rw \
     --volume=$HOST_DIR:$SHARED_DIR:rw \
+    -v /usr/lib/x86_64-linux-gnu/libGL.so.1.7.0:/usr/lib/x86_64-linux-gnu/libGL.so.1.7.0 \
+    -v /usr/lib/x86_64-linux-gnu/libGL.so.1.7:/usr/lib/x86_64-linux-gnu/libGL.so.1.7 \
+    -v /usr/lib/x86_64-linux-gnu/libGL.so.1:/usr/lib/x86_64-linux-gnu/libGL.so.1 \
+    -v /usr/lib/x86_64-linux-gnu/libGLX.so.0:/usr/lib/x86_64-linux-gnu/libGLX.so.0 \
+    -v /usr/lib/x86_64-linux-gnu/libGLdispatch.so.0:/usr/lib/x86_64-linux-gnu/libGLdispatch.so.0 \
     --env="XAUTHORITY=${XAUTH}" \
     --env="DISPLAY=${DISPLAY}" \
     -u autoware \
